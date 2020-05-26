@@ -11,7 +11,7 @@ const UserForm = ({ setCards, cards }) => {
 
   const submitForm = (event) => {
     event.preventDefault();
-    setCards([...cards, { ...card /*id: Date.now()*/ }]);
+    setCards([...cards, { ...card }]);
     setCard({ title: "", description: "", username: "", location: "" });
   };
 
@@ -56,7 +56,7 @@ const UserForm = ({ setCards, cards }) => {
         name="description"
         onChange={handleChanges}
       />
-
+      <button>Attach A Photo</button>
       <button disabled={isFormInvalid()} type="submit">
         Submit Request
       </button>

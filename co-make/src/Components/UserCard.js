@@ -36,22 +36,27 @@ const StyledP = styled.p`
   border-radius: 5px;
 `;
 
-const UserCards = (props) => {
+const UserCard = (props) => {
   return (
     <StyledDiv className="card-list">
       {props.cards.map((card) => (
         <div className="card" key={card.id}>
-          <StyledH2>{card.username}</StyledH2>
+          <h1>Username</h1>
+          <StyledH2>Username:{card.username}</StyledH2>
           <StyledHR></StyledHR>
-          <StyledH2>{card.title}</StyledH2>
+          <h1>Title</h1>
+          <StyledH2>Title:{card.title}</StyledH2>
           <StyledHR></StyledHR>
-          <StyledH4>{card.location}</StyledH4>
+          <h1>Location</h1>
+          <StyledH4>Location:{card.location}</StyledH4>
           <StyledHR></StyledHR>
-          <StyledP>{card.description}</StyledP>
+          <h1>Description</h1>
+          <StyledP>Description: {card.description}</StyledP>
+          <button>Attach A Photo</button>
         </div>
       ))}
     </StyledDiv>
   );
 };
 
-export default UserCards;
+export default UserCard;
