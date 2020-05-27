@@ -8,7 +8,7 @@ import styled from "styled-components";
 const StyledApp = styled.div`
   font-family: "Hind", sans-serif;
   text-align: center;
-  background-image: linear-gradient(-315deg, maroon 48%, darkslateblue 50%);
+  background-image: linear-gradient(-315deg, black 55%, grey 57%);
   padding: 32px;
   letter-spacing: 2px;
 `;
@@ -16,11 +16,11 @@ const StyledApp = styled.div`
 const App = () => {
   const [cards, setCards] = useState([
     {
-      id: 1,
-      username: "John Smith",
-      title: "Pothole",
-      description: "There is a pot hole on the street in front of my house",
-      location: "123 Some Place ave VA. USA",
+      // id: 1,
+      // username: "John Doe",
+      // title: "Pothole",
+      // description: "There is a pot hole on the street in front of my house",
+      // location: "123 Some Place ave VA. USA",
     },
   ]);
 
@@ -34,9 +34,6 @@ const App = () => {
         </Link>
         <Link to={`/home`}>
           <button>Home</button>
-        </Link>
-        <Link to={`/about`}>
-          <button>About</button>
         </Link>
         <Route path="/userform">
           <UserForm cards={cards} setCards={setCards} />
