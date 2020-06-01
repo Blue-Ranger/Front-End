@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import UserCards from "./Components/UserCard";
 import UserForm from "./Components/UserForm";
 import styled from "styled-components";
+import axios from "axios";
+import AllIssues from "./Components/AllIssues";
 
 const StyledApp = styled.div`
   font-family: "Hind", sans-serif;
@@ -16,13 +18,27 @@ const StyledApp = styled.div`
 const App = () => {
   const [cards, setCards] = useState([
     {
-      // id: 1,
-      // username: "John Doe",
-      // title: "Pothole",
-      // description: "There is a pot hole on the street in front of my house",
-      // location: "123 Some Place ave VA. USA",
+      id: 1,
+      username: "John Doe",
+      title: "Pothole",
+      description: "There is a pot hole on the street in front of my house",
+      location: "123 Some Place ave VA. USA",
     },
   ]);
+  const [data, setData] = useState([]);
+  const [url, setUrl] = useState([`https://randomuser.me/api/?results=3`]);
+
+  useEffect(() => {
+    axios
+      .get(url)
+      .then((response) => {
+        // console.log(response.data);
+        setData(response.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [url]);
 
   return (
     <StyledApp>
@@ -37,10 +53,14 @@ const App = () => {
         </Link>
         <Route path="/userform">
           <UserForm cards={cards} setCards={setCards} />
+          <UserCards cards={cards} />
         </Route>
-        <Route path="/"></Route>
+        {/* <UserCards cards={cards} /> */}
+        <Route path="/home">
+          <AllIssues data={data} />
+        </Route>
+        <Route path="/" />
       </Router>
-      <UserCards cards={cards} />
     </StyledApp>
   );
 };
