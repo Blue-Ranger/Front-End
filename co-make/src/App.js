@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import UserCards from "./Components/UserCard";
 import UserForm from "./Components/UserForm";
 import styled from "styled-components";
-import axios from "axios";
-import AllIssues from "./Components/AllIssues";
 
 const StyledApp = styled.div`
   font-family: "Hind", sans-serif;
@@ -25,20 +23,6 @@ const App = () => {
       location: "123 Some Place ave VA. USA",
     },
   ]);
-  const [data, setData] = useState([]);
-  const [url, setUrl] = useState([`https://randomuser.me/api/?results=3`]);
-
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((response) => {
-        // console.log(response.data);
-        setData(response.data.results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [url]);
 
   return (
     <StyledApp>
@@ -55,9 +39,9 @@ const App = () => {
           <UserForm cards={cards} setCards={setCards} />
           <UserCards cards={cards} />
         </Route>
-        {/* <UserCards cards={cards} /> */}
+
         <Route path="/home">
-          <AllIssues data={data} />
+          <UserForm cards={cards} setCards={setCards} />
         </Route>
         <Route path="/" />
       </Router>
